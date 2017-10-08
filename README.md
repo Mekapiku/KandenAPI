@@ -14,11 +14,11 @@ bundle exec ruby app.rb ./out.json
 
 ### Result
 ```
-{"kanden":
-    {
-        "this_month":"9,712円",
-        "diff_last_month":"-1,109円",
-        "diff_last_year":"-"
+{
+    "kanden": {
+        "this_month": "9,712円",
+        "diff_last_month": "-1,109円",
+        "diff_last_year": "-"
     }
 }
 ```
