@@ -87,3 +87,6 @@ build-iPhoneSimulator/
 
 # remove cron job setting
 /cron.sh
+
+# remove output file
+out.json

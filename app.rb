@@ -1,5 +1,10 @@
+$:.unshift File.dirname(__FILE__)
+
 require 'capybara/poltergeist'
-require "./config"
+require 'nokogiri'
+require 'date'
+
+require 'config'
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, {:js_errors => false, :timeout => 5000 })
@@ -20,13 +25,23 @@ submit = session.find('#container_0_subcontainer_0_maincontent_0_Login')
 submit.click
 
 # 最新の料金データを出力
-ret = session.all('dd.u-text-XXXL')
+page = Nokogiri::HTML.parse(session.html)
+table = page.css('.panel-pricedisplay__left').first
+left_table = table.css('.panel-pricedisplay__item').first
+right_table = table.css('.panel-pricedisplay__item.__item-P02').first
+
+this_month = Date.strptime(left_table.xpath('dd').first.children.last, "%Y年%m月分")
+this_month_price = left_table.xpath('dd')[1].text.gsub(/,|円/, "").to_i
+
+diff_last_month = right_table.xpath('dd').first.text.gsub(/,|円/, "").to_i
+diff_last_year = right_table.xpath('dd').last.text.gsub(/,|円/, "").to_i
 
 out = {
     "kanden" => {
-	"this_month" => ret[0].text,
-        "diff_last_month" => ret[1].text,
-        "diff_last_year" => ret[2].text
+        "date" => this_month,
+	      "price" => this_month_price,
+        "diff_last_month" => diff_last_month,
+        "diff_last_year" => diff_last_year
     }
 }
 
