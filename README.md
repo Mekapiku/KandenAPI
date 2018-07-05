@@ -5,11 +5,7 @@
 ## 使い方
 ### Command
 ```
-touch config.rb
-echo '$user_id = "your_kanden_id"' >> config.rb
-echo '$password = "your_kanden_password"' >> config.rb
-
-bundle exec ruby app.rb ./out.json
+bundle exec ruby app.rb ./out.json "login_id" "login_pass"
 ```
 
 ### Result
