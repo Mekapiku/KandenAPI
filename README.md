@@ -5,6 +5,7 @@
 ## 使い方
 ### Command
 ```
+bundle install --path vendor/bundle
 bundle exec ruby app.rb ./out.json "login_id" "login_pass"
 ```
 
