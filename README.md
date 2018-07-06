@@ -14,7 +14,7 @@ bundle exec ruby app.rb ./out.json "login_id" "login_pass"
 {
     "kanden": {
         "date":"2018-06-01"
-        "this_month": 8966,
+        "price": 8966,
         "diff_last_month": -1109,
         "diff_last_year": 110
     }
